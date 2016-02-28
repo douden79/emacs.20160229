@@ -1,0 +1,7 @@
+* ENV
+- [ ] EDIT
+  - [ ] linux c mode. [커널 폴더 지정.]
+  - [ ] default c mode.
+- [ ] PYTHON 환경 설정.
+  - [ ] pyobject
+- [ ] C++
