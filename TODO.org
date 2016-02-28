@@ -5,3 +5,4 @@
 - [ ] PYTHON 환경 설정.
   - [ ] pyobject
 - [ ] C++
+- [ ] helm-gtags 의 문제 태그가 안찾아짐.
