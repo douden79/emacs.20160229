@@ -51,8 +51,8 @@
     ;;-------------- Syntax
     flymake
     ;;-------------- Tagging
-    helm-gtags
     helm-cscope
+    ggtags
     ;;=============> syntax
     )
   "A list of packages to ensure are installed at launch.")
