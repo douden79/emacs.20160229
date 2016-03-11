@@ -70,4 +70,7 @@
  '(helm-gtags-ignore-case t)
  '(helm-gtags-auto-update t))
 
+;;--------------------------------- ansi-term
+(add-hook 'term-mode-hook (lambda()
+                            (setq yas-dont-activate t)))
 (provide 'editor)

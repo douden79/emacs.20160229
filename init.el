@@ -66,6 +66,9 @@ by babel.")
  '(ecb-options-version "2.40")
  '(ecb-source-path (quote (("/" "/"))))
  '(ecb-windows-width 0.25)
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-path-style (quote relative))
  '(prefer-coding-system (quote utf-8))
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -75,4 +78,4 @@ by babel.")
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Monaco" :foundry "apple" :full normal :weight normal :height 90 :width normal :full normal :full normal :full normal :full normal :full normal :full normal :full normal)))))
+ '(default ((t (:family "Envy Code R" :foundry "unknown" :full normal :weight normal :height 98 :width normal :full normal :full normal :full normal :full normal :full normal :full normal :full normal :slant normal)))))

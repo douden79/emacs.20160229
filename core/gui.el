@@ -80,7 +80,7 @@
  :box nil)
 (set-face-attribute
  'tabbar-separator nil
- :height 2.0)
+ :height 1.5)
 
 ;; tabbar display buffers-menu-buffer-name-length
 (defvar tabbar-displayed-buffers

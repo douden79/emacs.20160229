@@ -25,7 +25,6 @@
     ;;-------------- Enhanced.
     hlinum
     linum
-    ;;=============> Enhanced.
     smex
     ;;-------------- Edit.
     smartparens
@@ -38,7 +37,6 @@
     helm
     ;;-------------- Default.
     tabbar-ruler
-    ;;=============> Default.
     better-defaults
     iedit
     linum
@@ -53,7 +51,7 @@
     ;;-------------- Tagging
     helm-cscope
     ggtags
-    ;;=============> syntax
+    helm-gtags
     )
   "A list of packages to ensure are installed at launch.")
 
