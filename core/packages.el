@@ -28,6 +28,7 @@
     smex
     ;;-------------- Edit.
     smartparens
+    vlf
     ;;-------------- IDE
     ecb
     auto-complete

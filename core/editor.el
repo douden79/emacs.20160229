@@ -34,6 +34,7 @@
 ;; Add Your include path c/c++ project.
 ;;(semantic-add-system-include "/usr/local/boost_1_54_0/" 'c++-mode)
 (semantic-add-system-include "/home/babel/Build/DRV/BcmLinuxDVB/DRV/brcmlinuxdvbvix/" 'c-mode)
+(semantic-add-system-include "/home/babel/WORK/DRV/BCMLinuxDVB/BcmLinuxDVB/DRV/unified_20140613" 'c-mode)
 
 ;;--------------------------------- Edit
 (add-hook 'after-init-hook 'global-company-mode)
@@ -70,6 +71,9 @@
  '(helm-gtags-ignore-case t)
  '(helm-gtags-auto-update t))
 
+;;--------------------------------- Dired+
+;;copy another frame command.
+(setq dired-dwim-any-frame-flag t)
 ;;--------------------------------- ansi-term
 (add-hook 'term-mode-hook (lambda()
                             (setq yas-dont-activate t)))

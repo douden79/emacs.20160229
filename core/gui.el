@@ -13,7 +13,7 @@
 
 ;;-------------------  Line
 (global-hl-line-mode +1)
-(setq linum-format "%4d")
+(setq linum-format "%-4d")
 
 ;;(set-face-background 'hl-line "#000094")
 (set-face-foreground 'highlight nil)
@@ -53,7 +53,7 @@
 ;; tabbar attribute color and ui
 (set-face-attribute
  'tabbar-default nil
- :family "Monaco"
+ :family "Envy Code R VS"
  :background "#34495E"
  :foreground "#EEEEEE"
  :height 0.95
