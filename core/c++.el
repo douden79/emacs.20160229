@@ -47,24 +47,18 @@
   indent-tabs-mode nil))
 
 (defun linux-c-mode ()
-  "C mode with adjusted defaults for use with the Linux kernel."
-  (interactive)
-  (c-mode)
-  (add-hook 'after-save-hook (lambda () 
-                               (call-process "/bin/sh" nil 0 nil "-c" "pgrep global || global -u")))
-  (if (>= emacs-major-version 22)
-      (c-set-style "linux")
-    (progn
-      (c-set-style "K&R")
-      (setq tab-width 8)
-      (setq indent-tabs-mode t)
-      (setq c-basic-offset 8))))
+"C mode with adjusted defaults for use with the Linux kernel."
+(interactive)
+(c-mode)
+(c-set-style "K&R")
+(setq tab-width 8)
+(setq indent-tabs-mode t)
+(setq c-basic-offset 8))
 
+(add-to-list 'auto-mode-alist '("\.c$" . linux-c-mode))
 ;;-------------------- my Linux kernel path
 (setq auto-mode-alist
       (cons '("~/linux-4.4.1/.*\\.[ch]$" . linux-c-mode)
             auto-mode-alist))
-
-(add-hook 'c-mode-common-hook '(lambda () (c-set-style "nhk-c-mode")))
 
 (provide 'c++)
