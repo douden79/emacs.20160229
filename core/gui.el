@@ -142,5 +142,17 @@ are always included."
 (require 'hlinum)
 (hlinum-activate)
 
+;;-------------------  sublimity
+(require 'sublimity)
+(require 'sublimity-scroll)
+;;(require 'sublimity-map)
+;;(require 'sublimity-attractive)
+
+(setq sublimity-scroll-weight 10
+      sublimity-scroll-drift-length 5)
+(setq sublimity-attractive-centering-width 110)
+
+(sublimity-mode 1)
+
 (provide 'gui)
 ;; ui.el ends here!!!!

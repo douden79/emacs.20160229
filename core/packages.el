@@ -20,7 +20,7 @@
     ;;-------------- GUI.
     material-theme
     leuven-theme
-
+    monokai-theme
     highlight-symbol
     ;;-------------- Enhanced.
     hlinum
