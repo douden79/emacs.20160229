@@ -148,8 +148,8 @@ are always included."
 ;;(require 'sublimity-map)
 ;;(require 'sublimity-attractive)
 
-(setq sublimity-scroll-weight 10
-      sublimity-scroll-drift-length 5)
+(setq sublimity-scroll-weight 2
+      sublimity-scroll-drift-length 2)
 (setq sublimity-attractive-centering-width 110)
 
 (sublimity-mode 1)

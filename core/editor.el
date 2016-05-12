@@ -73,8 +73,10 @@
 
 ;;--------------------------------- Dired+
 ;;copy another frame command.
-(setq dired-dwim-any-frame-flag t)
+;;(setq dired-dwim-any-frame-flag t)
+(setq dired-dwim-target t)
 ;;--------------------------------- ansi-term
 (add-hook 'term-mode-hook (lambda()
                             (setq yas-dont-activate t)))
+
 (provide 'editor)
