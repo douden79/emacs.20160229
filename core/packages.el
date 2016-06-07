@@ -49,6 +49,7 @@
     flymake-cursor
     ;;-------------- Syntax
     flymake
+    dokuwiki-mode
     ;;-------------- Tagging
     helm-cscope
     ggtags

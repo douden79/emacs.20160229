@@ -29,8 +29,9 @@ your recently and most frequently used commands.")
 (global-set-key (kbd "<f4>") 'highlight-symbol-remove-all)
 
 ;;------------------- Magit
-(global-set-key (kbd "C--") 'magit-log-all)
-(global-set-key (kbd "C-=") 'magit-commit)
+(global-set-key (kbd "C-x l") 'magit-log-all)
+(global-set-key (kbd "C-x c") 'magit-commit)
+(global-set-key (kbd "C-x p") 'magit-pull)
 
 ;;------------------- Helm Gtags
 (add-hook 'helm-gtags-mode-hook

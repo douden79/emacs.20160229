@@ -79,4 +79,6 @@
 (add-hook 'term-mode-hook (lambda()
                             (setq yas-dont-activate t)))
 
+;;--------------------------------- visit-tags-table
+(setq visit-tags-table '("/home/babel/Work/Drv/broadcom-arm/release_bolt_v1.10"))
 (provide 'editor)
