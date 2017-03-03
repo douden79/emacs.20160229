@@ -1,8 +1,5 @@
 * ENV
-- [ ] EDIT
-  - [ ] linux c mode. [커널 폴더 지정.]
-  - [ ] default c mode.
-- [ ] PYTHON 환경 설정.
-  - [ ] pyobject
-- [ ] C++
-- [ ] helm-gtags 의 문제 태그가 안찾아짐.
+- core/core-configure-layer.el 에서 emacs/configure-layers 로 해당 레이어 별로 로딩 하는 방식으로.
+
+
+layers/+[category] 
