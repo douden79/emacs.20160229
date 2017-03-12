@@ -1,12 +1,51 @@
 ;; core-emacs.el file.
 ;;
 
-(require 'core-configuration-layer)
-
 (setq message-log-max 16384)
 (defconst emacs-start-time (current-time))
 
+;;
+;; define emacs removes gui elements.
+(defun emacs/removes-gui-elements ()
+  "Remove the menu bar, tool bar and scroll bars"
+  ;; remove menu bar
+  (when (and (fboundp 'menu-bar-mode) (not (eq menu-bar-mode -1)))
+    (menu-bar-mode -1))
+  (when (and (fboundp 'scroll-bar-mode) (not (eq scroll-bar-mode -1)))
+    (scroll-bar-mode -1))
+  (when (and (fboundp 'tool-bar-mode) (not (eq tool-bar-mode -1)))
+    (tool-bar-mode -1))
+  ;; tooltips in echo-area
+  (when (and (fboundp 'tooltip-mode) (not (eq tooltip-mode -1)))
+    (tooltip-mode -1)))
+
+;;
+;; define emacs add gui elements.
+(defun emacs/add-gui-elements ()
+  "Add linum format and cursor color"
+  (setq linum-format "%-4d")
+  (set-cursor-color "Red"))
+
+;; gui elements initialize.
+(defun emacs/gui-init ()
+  "Remove and Add gui element."
+  (emacs/removes-gui-elements)
+  (emacs/add-gui-elements))
+
+;; emacs initialized define area.
 (defun emacs/init ()
+  ;; remove gui element
+  ;; TODO: defun remove gui elements and add gui elements.
+  (emacs/gui-init)
+  ;; default prefer coding style utf-8
+  (prefer-coding-system 'utf-8)
+  ;; conofigure layer initialize.
+  (require 'core-configuration-layer)
   (emacs/configuration-layer-init)
+
+  ;; default theme initialize.
+  ;; TODO : late load theme.
+;;  (load-theme 'monokai t)
+  ;; font
   )
 (provide 'core-emacs)

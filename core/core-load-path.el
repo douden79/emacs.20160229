@@ -2,12 +2,6 @@
 ;; emacs first load path
 ;;
 
-;; emacs personal directory.
-(defvar emacs-personal-dir (expand-file-name "personal" emacs-dir)
-  "This directory is for your personal configuration.
-Users of Emacs are encouraged to keep their personal configuration
-changes in this directory.  All Emacs Lisp files there are loaded automatically.")
-
 ;;
 ;; emacs layer directories.
 ;; ex) lang, emacs, theme, tags

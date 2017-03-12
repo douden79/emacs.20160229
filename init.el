@@ -21,19 +21,16 @@
 
 ;; the core stuff
 (require 'core-emacs)
-(require 'core-load-path)
-(require 'core-packages)
-(require 'core-gui)
-(require 'core-editor)
-(require 'core-keybindings)
-(require 'core-autocomplete)
-(require 'core-ide)
-(require 'core-error)
+(emacs/init)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" default)))
  '(helm-gtags-auto-update t)
  '(helm-gtags-ignore-case t)
  '(helm-gtags-path-style (quote relative))
