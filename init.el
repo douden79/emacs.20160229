@@ -21,7 +21,9 @@
 
 ;; the core stuff
 (require 'core-emacs)
+(require 'core-packages)
 (emacs/init)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -26,17 +26,16 @@
   (setq linum-format "%-4d")
   (set-cursor-color "Red"))
 
-;; gui elements initialize.
+;;
+;; gui element initialize.
 (defun emacs/gui-init ()
-  "Remove and Add gui element."
-  (emacs/removes-gui-elements)
-  (emacs/add-gui-elements))
+  "Init gui element initialize."
+  (emacs/add-gui-elements)
+  (emacs/removes-gui-elements))
 
 ;; emacs initialized define area.
 (defun emacs/init ()
-  ;; remove gui element
-  ;; TODO: defun remove gui elements and add gui elements.
-  (emacs/gui-init)
+
   ;; default prefer coding style utf-8
   (prefer-coding-system 'utf-8)
   ;; conofigure layer initialize.
@@ -45,7 +44,11 @@
 
   ;; default theme initialize.
   ;; TODO : late load theme.
-;;  (load-theme 'monokai t)
+  (load-theme 'monokai t)
+
+  ;; gui element init.
+  (emacs/gui-init)
+  
   ;; font
   )
 (provide 'core-emacs)

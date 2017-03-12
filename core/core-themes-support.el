@@ -7,6 +7,6 @@
 (defun emacs/load-theme ()
   "default load theme"
   ;; TODO : late define load-theme
-  )
+  (load-theme 'monokai t))
 
 (provide core-themes-support)
