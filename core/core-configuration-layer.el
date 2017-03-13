@@ -1,6 +1,7 @@
 ;; core configuration layer initialization.
 (require 'cl-lib)
 (require 'eieio)
+(require 'subr-x)
 (require 'package)
 (require 'core-load-path)
 (require 'ht)
