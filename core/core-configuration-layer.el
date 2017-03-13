@@ -3,8 +3,27 @@
 (require 'package)
 (require 'core-load-path)
 
-;; define package archives.
 ;;
+;; dotemacs configuration define.
+;;
+(defvar dotspacemacs-configuration-layer-path '()
+  "List of additional paths where to look for configuration layers.
+Paths must have a trailing slash (ie. `~/.mycontribs/')")
+
+(defvar dotspacemacs-elpa-subdirectory nil
+  "If non-nil, a form that evaluates to a package directory. For
+example, to use different package directories for different Emacs
+versions, set this to `emacs-version'.")
+
+(defvar dotspacemacs-install-packages 'used-only
+  "Defines the behaviour of Spacemacs when installing packages.
+Possible values are `used-only', `used-but-keep-unused' and `all'. `used-only'
+installs only explicitly used packages and uninstall any unused packages as well
+as their unused dependencies. `used-but-keep-unused' installs only the used
+packages but won't uninstall them if they become unused. `all' installs *all*
+packages supported by Spacemacs and never uninstall them.")
+
+;; define package archives.
 (defvar configuration-layer-elpa-archives
   '(("melpa" . "melpa.org/packages/")
     ("org" . "orgmode.org/elpa/")
@@ -53,6 +72,60 @@ The returned list has a `package-archives' compliant format."
                    (string-prefix-p "/" (cdr x)))
                (cdr x))))
    archives))
+
+;; discover layer
+(defun configuration-layer/discover-layers ()
+  "Initialize `configuration-layer--indexed-layers' with layer directories."
+  ;; load private layers at the end on purpose we asume that the user layers
+  ;; must have the final word on configuration choices. Let
+  ;; `dotspacemacs-directory' override the private directory if it exists.
+  (setq  configuration-layer--indexed-layers (make-hash-table :size 1024))
+  (let ((search-paths (append (list configuration-layer-directory)
+                              dotspacemacs-configuration-layer-path
+                              (list configuration-layer-private-layer-directory)
+                              (when dotspacemacs-directory
+                                (list dotspacemacs-directory))))
+        (discovered '()))
+    ;; depth-first search of subdirectories
+    (while search-paths
+      (let ((current-path (car search-paths)))
+        (setq search-paths (cdr search-paths))
+        (dolist (sub (directory-files current-path t nil 'nosort))
+          ;; ignore ".", ".." and non-directories
+          (unless (or (string-equal ".." (substring sub -2))
+                      (string-equal "." (substring sub -1))
+                      (not (file-directory-p sub)))
+            (let ((type (configuration-layer//directory-type sub)))
+              (cond
+               ((eq 'category type)
+                (let ((category (configuration-layer//get-category-from-path
+                                 sub)))
+                  (spacemacs-buffer/message "-> Discovered category: %S"
+                                            category)
+                  (push category configuration-layer-categories)
+                  (setq search-paths (cons sub search-paths))))
+               ((eq 'layer type)
+                (let* ((layer-name-str (file-name-nondirectory sub))
+                       (layer-name (intern layer-name-str))
+                       (indexed-layer (configuration-layer/get-layer
+                                       layer-name)))
+                  (if indexed-layer
+                      ;; the same layer may have been discovered twice,
+                      ;; in which case we don't need a warning
+                      (unless (string-equal (oref indexed-layer :dir) sub)
+                        (configuration-layer//warning
+                         (concat
+                          "Duplicated layer %s detected in directory \"%s\", "
+                          "replacing old directory \"%s\" with new directory.")
+                         layer-name-str sub (oref indexed-layer :dir))
+                        (oset indexed-layer :dir sub))
+                    (spacemacs-buffer/message
+                     "-> Discovered configuration layer: %s" layer-name-str)
+                    (configuration-layer//add-layer
+                     (configuration-layer/make-layer layer-name nil nil sub)))))
+               (t
+                ;; layer not found, add it to search path
+                (setq search-paths (cons sub search-paths)))))))))))
 
 ;; refer to spacemacs sync.
 ;;
