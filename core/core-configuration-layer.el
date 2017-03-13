@@ -11,6 +11,12 @@
     ("gnu" . "elpa.gnu.org/packages/"))
   "List of ELPA carhives required.")
 
+;; TODO : refer to space emacs configuration-layer lazy-install-packages --> layer/sync -->
+;; auto-mode --> lazy-install --> insert-lazy-install-form --> insert-lazy-install-configuration
+;;
+;; refer to spacemacs layer/sync configuration-layer/sync is called in init.el file.
+;;
+
 ;; default configuration layer directory
 ;;
 (defconst configuration-layer-directory
