@@ -24,6 +24,9 @@
 (require 'core-packages)
 (emacs/init)
 
+;; TODO :
+;;(configuration-layer/sync)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
