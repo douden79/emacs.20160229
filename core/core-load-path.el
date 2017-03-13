@@ -4,6 +4,15 @@
 
 ;;
 ;; emacs layer directories.
+
+(defvar emacs-start-directory
+  user-emacs-directory
+  "emacs start directory.")
+
+(defvar emacs-core-directory
+  (expand-file-name (concat emacs-start-directory "core/"))
+  "emacs core directory.")
+
 ;; ex) lang, emacs, theme, tags
 (defvar emacs-layers-dir (expand-file-name "layers" emacs-dir)
   " This directory is divide to package.")
