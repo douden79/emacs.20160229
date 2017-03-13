@@ -29,6 +29,10 @@
 (defvar layer-tag-dir (expand-file-name "+tags" emacs-layers-dir)
   " This directory tags directory.")
 
+(defconst user-home-directory
+  (expand-file-name "~/")
+  "User home directory (~/).")
+
 (defvar emacs-savefile-dir (expand-file-name "savefile" emacs-dir)
   "This folder stores all the automatically generated save/history-files.")
 
