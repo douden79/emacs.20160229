@@ -8,7 +8,6 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-
 (setq c-c++-packages
   '(
     cc-mode
@@ -34,31 +33,17 @@
   (use-package cc-mode
     :defer t
     :init
-    (progn
-      (add-to-list 'auto-mode-alist
-                   `("\\.h\\'" . ,c-c++-default-mode-for-headers)))
-    :config
-    (progn
-      (require 'compile)
-      (c-toggle-auto-newline 1)
-      (spacemacs/set-leader-keys-for-major-mode 'c-mode
-        "ga" 'projectile-find-other-file
-        "gA" 'projectile-find-other-file-other-window)
-      (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-        "ga" 'projectile-find-other-file
-        "gA" 'projectile-find-other-file-other-window))))
+    ))
+
+(use-package cc-mode
+             :ensure t
+             )
 
 (defun c-c++/init-disaster ()
   (use-package disaster
     :defer t
     :commands (disaster)
-    :init
-    (progn
-      (spacemacs/set-leader-keys-for-major-mode 'c-mode
-        "D" 'disaster)
-      (spacemacs/set-leader-keys-for-major-mode 'c++-mode
-        "D" 'disaster))))
-
+))
 (defun c-c++/init-clang-format ()
   (use-package clang-format
     :if c-c++-enable-clang-support))
@@ -145,3 +130,17 @@
     :post-init
     (dolist (mode '(c-mode c++-mode))
       (spacemacs/setup-helm-cscope mode))))
+
+(defun c-c++/init ()
+  (use-package color-moccur
+               :commands (isearch-moccur isearch-all)
+               :bind (("M-s O" . moccur)
+                      :map isearch-mode-map
+                      ("M-o" . isearch-moccur)
+                      ("M-O" . isearch-moccur-all))
+               :init
+               (setq isearch-lazy-highlight t)
+               :config
+               (use-package moccur-edit)))
+
+(provide 'c-c++-packages)

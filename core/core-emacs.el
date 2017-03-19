@@ -1,6 +1,7 @@
 ;; core-emacs.el file.
 ;;
 
+(require 'core-load-path)
 (setq message-log-max 16384)
 (defconst emacs-start-time (current-time))
 
@@ -40,12 +41,15 @@
   (prefer-coding-system 'utf-8)
   
   ;; conofigure layer initialize.
-  (require 'core-configuration-layer)
-  (configuration-layer/initialize)
+;;  (require 'core-configuration-layer)
+;;  (configuration-layer/initialize)
 
+  ;; core-load-path init
+  (emacs/load-path-init)
   ;; default theme initialize.
   ;; TODO : late load theme.
-  (load-theme 'monokai t)
+  ;; load-theme init first.
+;;  (load-theme 'monokai t)
 
   ;; gui element init.
   (emacs/gui-init)
