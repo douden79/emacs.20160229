@@ -5,8 +5,6 @@
 ;;
 ;; emacs layer directories.
 
-(require 'core-packages)
-
 (defvar emacs-start-directory
   user-emacs-directory
   "emacs start directory.")
@@ -31,24 +29,27 @@
 (defvar layer-tag-dir (expand-file-name "+tags" emacs-layers-dir)
   " This directory tags directory.")
 
-;;;; language define directory.
-(defvar layer-c-c++dir (expand-file-name "c-c++/packages.el" layer-lang-dir)
-  " This directory c-c++ directory.")
+;; source control directory.
+(defvar layer-source-control-dir (expand-file-name "+source-control" emacs-layers-dir)
+  "This directory source control directory.")
 
 (defconst user-home-directory
   (expand-file-name "~/")
   "User home directory (~/).")
 
-(defvar emacs-savefile-dir (expand-file-name "savefile" emacs-dir)
-  "This folder stores all the automatically generated save/history-files.")
+;;;; load C/C++ file.
+(defvar layer-c-c++dir (expand-file-name "c-c++/packages.el" layer-lang-dir)
+  " This directory c-c++ directory.")
+
+;;;; load source control file.
+(defvar layer-magit-dir (expand-file-name "magit/packages.el" layer-source-control-dir)
+  "This directory source control directory.")
 
 ;; add-lang-path
 (defun emacs/add-lang-path ()
   "emacs lang layer directory load path."
   (load-file layer-c-c++dir)
 )
-
-
 
 (defun emacs/load-path-init ()
   " Defined Directory default init."
