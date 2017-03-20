@@ -49,10 +49,19 @@
 (defun emacs/add-lang-path ()
   "emacs lang layer directory load path."
   (load-file layer-c-c++dir)
-)
+  )
+
+;; add source-control-path
+(defun emacs/source-contorl-path ()
+  "emacs source-control layer directory load path."
+  (load-file layer-magit-dir)
+  (magit/init))
 
 (defun emacs/load-path-init ()
   " Defined Directory default init."
+  ;; language define HERE!!!
   (emacs/add-lang-path)
+  ;; source-control define HERE!!!
+  (emacs/source-contorl-path)
   )
 (provide 'core-load-path)
