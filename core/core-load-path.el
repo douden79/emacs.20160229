@@ -23,7 +23,7 @@
 (defvar layer-emacs-dir (expand-file-name "+emacs" emacs-layers-dir)
   " This directory emacs directory.")
 ;; theme directories.
-(defvar layer-theme-dir (expand-file-name "+theme" emacs-layers-dir)
+(defvar layer-theme-dir (expand-file-name "+themes" emacs-layers-dir)
   " This direcotry theme directory.")
 ;; tags directories.
 (defvar layer-tag-dir (expand-file-name "+tags" emacs-layers-dir)
@@ -45,11 +45,14 @@
 (defvar layer-magit-dir (expand-file-name "magit/packages.el" layer-source-control-dir)
   "This directory source control directory.")
 
+;;;; load theme.
+(defvar layer-monokai-dir (expand-file-name "monokai/packages.el" layer-theme-dir)
+  "This directory monokai theme directory.")
+
 ;; add-lang-path
 (defun emacs/add-lang-path ()
   "emacs lang layer directory load path."
-  (load-file layer-c-c++dir)
-  )
+  (load-file layer-c-c++dir))
 
 ;; add source-control-path
 (defun emacs/source-contorl-path ()
@@ -57,11 +60,19 @@
   (load-file layer-magit-dir)
   (magit/init))
 
+;; add theme path init.
+(defun emacs/load-theme-path ()
+  "emacs theme layer directory load path."
+  (load-file layer-monokai-dir)
+  (monokai/monokai-init))
+
 (defun emacs/load-path-init ()
   " Defined Directory default init."
   ;; language define HERE!!!
   (emacs/add-lang-path)
   ;; source-control define HERE!!!
   (emacs/source-contorl-path)
-  )
+  ;; theme define HERE!!!
+  (emacs/load-theme-path))
+
 (provide 'core-load-path)

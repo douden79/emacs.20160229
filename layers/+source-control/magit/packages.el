@@ -7,12 +7,9 @@
          ("C-c v g" . magit-blame)
          ("C-c v l" . magit-log-buffer-file)
          ("C-c v p" . magit-pull))
-  :config (setq magit-save-repository-buffers 'dontask))
-)
-
+  :config (setq magit-save-repository-buffers 'dontask)))
 
 (defun magit/init ()
   "magit use-package initialize."
-  (magit/magit-init)
-  )
+  (magit/magit-init))
   
