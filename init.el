@@ -25,7 +25,7 @@
 (emacs/init)
 
 ;; TODO :
-(configuration-layer/sync)
+;;(configuration-layer/sync)
 
 
 (custom-set-variables
