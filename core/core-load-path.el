@@ -28,6 +28,9 @@
 ;; tags directories.
 (defvar layer-tag-dir (expand-file-name "+tags" emacs-layers-dir)
   " This directory tags directory.")
+;; auto complete dir.
+(defvar layer-autocomplete-dir (expand-file-name "+completion" emacs-layers-dir)
+  " This directory autocomplete directory.")
 
 ;; source control directory.
 (defvar layer-source-control-dir (expand-file-name "+source-control" emacs-layers-dir)
@@ -49,6 +52,10 @@
 (defvar layer-monokai-dir (expand-file-name "monokai/packages.el" layer-theme-dir)
   "This directory monokai theme directory.")
 
+;;;; auto-complete
+(defvar layer-auto-complete-dir (expand-file-name "auto-completion/packages.el" layer-autocomplete-dir)
+  "This directory auto-complete directory.")
+
 ;; add-lang-path
 (defun emacs/add-lang-path ()
   "emacs lang layer directory load path."
@@ -66,6 +73,12 @@
   (load-file layer-monokai-dir)
   (monokai/monokai-init))
 
+;; add autocomplete path init.
+(defun emacs/auto-complete-path ()
+  "emacs autocompelte layer directory load path."
+  (load-file layer-auto-complete-dir)
+  (auto-complete/init))
+
 (defun emacs/load-path-init ()
   " Defined Directory default init."
   ;; language define HERE!!!
@@ -73,6 +86,8 @@
   ;; source-control define HERE!!!
   (emacs/source-contorl-path)
   ;; theme define HERE!!!
-  (emacs/load-theme-path))
+  (emacs/load-theme-path)
+  ;; auto-completion HERE!!!
+  (emacs/auto-complete-path))
 
 (provide 'core-load-path)
