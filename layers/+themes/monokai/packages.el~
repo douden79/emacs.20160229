@@ -1,5 +1,0 @@
-(defun monokai/monokai-init ()
-  "Monokai theme install."
-  (use-package monokai
-    :ensure t
-    :init

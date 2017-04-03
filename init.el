@@ -24,6 +24,13 @@
 (require 'core-packages)
 (emacs/init)
 
+;;▶
+;;▷
+;;▒
+;;▒
+;;▼
+;;◎
+
 ;; TODO :
 ;;(configuration-layer/sync)
 
