@@ -46,6 +46,29 @@
 
 ;; ▼ Appearance
 ;; ▼ Editor modify
+;; multiple cursor
+(defun editor/multiplecursor ()
+  "Multiple Cursor Init"
+  (use-package multiple-cursors
+    :ensure t
+    :bind (("C-l" . mc/edit-lines)
+           ("C-;" . mc/mark-all-like-this)))
+  )
+
+(use-package multiple-cursors
+:ensure t
+:bind (("C-l" . mc/edit-lines)
+("C-;" . mc/mark-all-like-this)))
+
+;; search igrep
+(defun editor/igrep ()
+  "igrep init"
+  (use-package igrep
+    :ensure t
+    :bind (("C-s" . igrep))
+    )
+  )
+
 ;; ▼ code folding
 (defun editor/hideshowvis ()
   "hideshowvis init"
@@ -75,4 +98,8 @@
 
   ;; code folding
   (editor/hideshowvis)
+
+  ;; Editor modify
+  (editor/igrep)
+  (editor/multiplecursor)
   )
