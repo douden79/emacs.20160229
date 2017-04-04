@@ -69,6 +69,36 @@
     )
   )
 
+;; hlinum
+(defun editor/hlinum ()
+  "hlinum init"
+  (use-package hlinum
+    :ensure t
+    :config
+    (global-linum-mode t)
+    (defun linum-update-window-scale-fix (win)
+      "fix linum for scaled text"
+      (set-window-margins win
+                          (ceiling (* (if (boundp 'text-scale-mode-step)
+                                          (expt text-scale-mode-step
+                                                text-scale-mode-amount) 1)
+                                      (if (car (window-margins))
+                                          (car (window-margins)) 1)))))
+    (advice-add #'linum-update-window :after #'linum-update-window-scale-fix))
+  )
+
+;; linum
+(defun editor/linum ()
+  "linum init"
+  (use-package linum
+    :ensure t
+    :config
+    (global-hl-line-mode +1)
+    (setq linum-format "%-4d"))
+  (column-number-mode t)
+  (size-indication-mode t)
+  )
+
 ;; ▼ code folding
 (defun editor/hideshowvis ()
   "hideshowvis init"
@@ -102,4 +132,8 @@
   ;; Editor modify
   (editor/igrep)
   (editor/multiplecursor)
+
+  ;; Hlinum
+  (editor/hlinum)
+  (editor/linum)
   )
