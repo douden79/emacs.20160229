@@ -22,23 +22,35 @@
 (defvar layer-version-control-dir (expand-file-name "+VersionControl/packages.el" emacs-layers-dir)
   "This Directory VersionControl.")
 
+;; ▶ Editor Directory.
+(defvar layer-editor-dir (expand-file-name "+Editor/packages.el" emacs-layers-dir)
+  "This Directory Editor.")
+
 ;; ▶ add layer-version-control-dir
 (defun emacs/layer-version-control-path ()
     "emacs version control layer directory load path."
   (load-file layer-version-control-dir)
   (versioncontrol/init))
 
-;; ▶ add theme path init.
+;; ▶ add appearance path init.
 (defun emacs/load-appearance-path ()
   "emacs theme layer directory load path."
   (load-file layer-appearance-dir)
   (appearance/init))
+
+;; ▶ add editor path init
+(defun emacs/load-editor-dir ()
+  "emacs editor directory load path."
+  (load-file layer-editor-dir)
+  (editor/init))
 
 (defun emacs/load-path-init ()
   " Defined Directory default init."
   ;; VersionControl init
   (emacs/layer-version-control-path)
   ;; Appearance init
-  (emacs/load-appearance-path))
+  (emacs/load-appearance-path)
+  ;; Editor init
+  (emacs/load-editor-dir))
 
 (provide 'core-load-path)

@@ -1,9 +1,10 @@
 ;;; packages.el --- smex Layer packages File for babel.
-(defun smex/init-smex ()
+(defun better/smex ()
+  "smex use-package initialize."
   (use-package smex
-    :defer t
-    :init
-    (global-set-key (kbd "M-x" . smex))))
+    :ensure t
+    :bind
+    ("M-x" . smex)))
 
 ;; ▶ General
 ;; ▼ CodeComplete ( Autocomplete, yasnippet )
@@ -16,3 +17,8 @@
 ;; ▶ Inspections
 ;; ▶ File Encoding
 
+;; Editor init
+(defun editor/init ()
+  "Editor envirment init"
+  (better/smex)
+  )
