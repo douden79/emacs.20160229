@@ -26,6 +26,10 @@
 (defvar layer-editor-dir (expand-file-name "+Editor/packages.el" emacs-layers-dir)
   "This Directory Editor.")
 
+;; ▶ Build/Debugger Directory.
+(defvar layer-build-dir (expand-file-name "+Build/packages.el" emacs-layers-dir)
+  "This Directory Build/Debugger.")
+
 ;; ▶ add layer-version-control-dir
 (defun emacs/layer-version-control-path ()
     "emacs version control layer directory load path."
@@ -44,6 +48,12 @@
   (load-file layer-editor-dir)
   (editor/init))
 
+;; ▶ add build/debugging path init
+(defun emacs/load-debug-dir ()
+  "emacs build/debugging directory load path."
+  (load-file layer-build-dir)
+  (build/init))
+
 (defun emacs/load-path-init ()
   " Defined Directory default init."
   ;; VersionControl init
@@ -51,6 +61,9 @@
   ;; Appearance init
   (emacs/load-appearance-path)
   ;; Editor init
-  (emacs/load-editor-dir))
+  (emacs/load-editor-dir)
+  ;; Build/debugger init
+  (emacs/load-debug-dir)
+  )
 
 (provide 'core-load-path)

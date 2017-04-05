@@ -44,9 +44,29 @@
              (append '(ac-source-yasnippet) ac-sources)))))
   )
 
-;; ▼ Appearance
+;; ▼ function args
+(defun editor/function-args ()
+  "function-args init"
+  (use-package function-args
+    :ensure t
+    :config (fa-config-default)
+             (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+             (add-to-list 'auto-mode-alist '("\\.h\\'" . c-mode))
+             (set-default 'semantic-case-fold t))
+  )
+
+;; ▶ Appearance
+
 ;; ▼ Editor modify
-;; multiple cursor
+;; ▼ Large file opne
+(defun editor/vlf ()
+  "Large file open"
+  (use-package vlf
+    :ensure t
+    :config (custom-set-variables '(vlf-application 'dont-ask)))
+  )
+
+;; ▼ multiple cursor
 (defun editor/multiplecursor ()
   "Multiple Cursor Init"
   (use-package multiple-cursors
@@ -141,6 +161,44 @@
   )
 
 ;; ▶ Color / Fonts
+;; ▼ highlight-symbol
+(defun editor/highlightsymbol ()
+  "highlightsymbol"
+  (use-package highlight-symbol
+    :ensure t
+    :bind (([f3] . highlight-symbol-at-point)
+           ([f4] . highlight-symbol-remove-all))
+    )
+  )
+
+;; ▶ IDE
+;; ▼ ECB
+(defun editor/ecb ()
+  "ECB IDE init"
+  (use-package ecb
+    :ensure t)
+  :init (setq ecb-layout-name "right1")
+  (setq ecb-examples-bufferinfo-buffer-name nil)
+  (setq stack-trace-on-error t)
+  (setq ecb-version-check nil)
+  (setq ecb-compile-window-height 12)
+  )
+
+;; ▼ HELM-Projectile
+(defun editor/helm-projectile ()
+  "helm-projectile"
+  (use-package helm-projectile
+    :ensure t
+    :bind (("C-p" . helm-projectile))
+    :config (helm-projectile-on)
+    :init (setq projectile-enable-caching t)
+    (setq projectile-switch-project-action 'projectile-dired)
+    (setq projectile-remember-window-configs t)
+    (setq projectile-completion-system 'helm)
+    (setq projectile-switch-project-action 'helm-projectile)
+    (projectile-global-mode))
+  )
+
 ;; ▶ Code Style
 ;; ▶ Inspections
 ;; ▶ File Encoding
@@ -168,4 +226,17 @@
   (editor/sublimity)
   (editor/bm)
   (editor/dired+)
+
+  ;; color/symbol
+  (editor/highlightsymbol)
+
+  ;; function
+  (editor/function-args)
+
+  ;; file/modify
+  (editor/vlf)
+
+  ;; IDE
+  (editor/helm-projectile)
+  (editor/ecb)
   )
