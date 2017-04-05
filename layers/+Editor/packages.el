@@ -65,7 +65,7 @@
   "igrep init"
   (use-package igrep
     :ensure t
-    :bind (("C-s" . igrep))
+    :bind (("C-s" . rgrep))
     )
   )
 
@@ -97,6 +97,35 @@
     (setq linum-format "%-4d"))
   (column-number-mode t)
   (size-indication-mode t)
+  )
+
+;; sublimity : smooth scrolling
+(defun editor/sublimity ()
+  "sublimity init"
+  (use-package sublimity
+    :ensure t
+    :config
+    (setq sumlimity-scroll-weight 2
+          sublimity-scroll-drift-length 2)
+    (setq sublimity-attractive-centering-width 110))
+  )
+
+;; dired+
+(defun editor/dired+ ()
+  "Dired plus"
+  (use-package dired+
+    :ensure t
+    :init (setq dired-dwim-target t))
+  )
+
+;; bm bookmark
+(defun editor/bm ()
+  "Bookmark package"
+  (use-package bm
+    :ensure t
+    :bind (("C-3" . bm-toggle)
+           ("C-2" . bm-next)
+           ("C-1" . bm-previous)))
   )
 
 ;; ▼ code folding
@@ -136,4 +165,7 @@
   ;; Hlinum
   (editor/hlinum)
   (editor/linum)
+  (editor/sublimity)
+  (editor/bm)
+  (editor/dired+)
   )
