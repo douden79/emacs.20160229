@@ -44,6 +44,12 @@
              (append '(ac-source-yasnippet) ac-sources)))))
   )
 
+;; ▼ smooth scrolling
+(defun editor/smooth-scrolling ()
+  "line by line pause improve"
+  (setq redisplay-dont-pause t)
+  )
+
 ;; ▼ function args
 (defun editor/function-args ()
   "function-args init"
@@ -172,6 +178,36 @@
   )
 
 ;; ▶ IDE
+;; ▼ Helm Packages
+(defun editor/helm-gtags ()
+  "Helm gtags setting."
+  (use-package helm-gtags
+    :ensure t
+    :commands (helm-gtags-mode helm-gtags-dwim)
+    :diminish "HGt"
+    :bind (("M-t" . helm-gtags-pop-stack)
+           ("M-]" . helm-gtags-find-tag)
+           ("M-[" . helm-gtags-find-rtag)
+           ("M-." . helm-gtags-dwim)
+           ("M-," . helm-gtags-tags-in-this-function)
+           ("C-j" . helm-gtags-select)
+           ("M-g M-p" . helm-gtags-parse-file))
+    :init
+    ;; Enable helm-gtags-mode in code
+    (add-hook 'c-mode-hook 'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    )
+  )
+;; helm swoop
+(defun editor/helm-swoop ()
+  "Helm swoop setting."
+(use-package helm-swoop
+  :ensure t
+  :bind (("C-c o" . helm-swoop)
+         ("C-c O" . helm-multi-swoop)))
+)
+
 ;; ▼ ECB
 (defun editor/ecb ()
   "ECB IDE init"
@@ -200,8 +236,40 @@
   )
 
 ;; ▶ Code Style
+;; linux c mode
+(defun linux-c-indent ()
+  "adjusted defaults for C/C++ mode use with the Linux kernel."
+  (interactive)
+  (setq tab-width 8)
+  ;;force spaces, to work with dumber editors
+  (setq indent-tabs-mode nil) 
+  (setq c-basic-offset 8)
+  (add-hook 'c-mode-hook 'linux-c-indent)
+  (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
+  (add-hook 'c++-mode-hook 'linux-c-indent)
+  )
+
 ;; ▶ Inspections
 ;; ▶ File Encoding
+;; font setting.
+(defun editor/font ()
+  "font setting"
+  (setq face-font-rescale-alist
+        '((".*hiragino.*" . 1.0)
+          (".*Gulim.*" . 1.0)))
+  (set-language-environment "Korean")
+  )
+
+;; editor etc settings.
+(defun editor/etc ()
+  "editor settings."
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (modify-coding-system-alist 'file "\\.*\\'" 'utf-8)
+  (setq coding-system-for-read 'utf-8)
+  (setq-default
+   whitespace-line-column 80
+   whitespace-style       '(face lines-tail))
+  )
 
 ;; Editor init
 (defun editor/init ()
@@ -239,4 +307,12 @@
   ;; IDE
   (editor/helm-projectile)
   (editor/ecb)
+  (editor/helm-gtags)
+
+  ;; Scrolling
+  (editor/smooth-scrolling)
+  (editor/etc)
+
+  ;; code style
+  (linux-c-indent)
   )
