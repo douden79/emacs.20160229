@@ -44,7 +44,15 @@
              (append '(ac-source-yasnippet) ac-sources)))))
   )
 
-;; ▼ smooth scrolling
+;; ▼ better default/ido-mode
+(defun editor/better-default ()
+  "better-default init"
+  (use-package better-defaults
+    :ensure t
+    :init (ido-mode 0))
+  )
+
+  ;; ▼ smooth scrolling
 (defun editor/smooth-scrolling ()
   "line by line pause improve"
   (setq redisplay-dont-pause t)
@@ -249,6 +257,14 @@
   (add-hook 'c++-mode-hook 'linux-c-indent)
   )
 
+;; ▼ flycheck
+(defun editor/flycheck ()
+  "flycheck init"
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+  )
+
 ;; ▶ Inspections
 ;; ▶ File Encoding
 ;; font setting.
@@ -269,6 +285,32 @@
   (setq-default
    whitespace-line-column 80
    whitespace-style       '(face lines-tail))
+  )
+
+;; editor general settings.
+(defun editor/general ()
+  "editor general init"
+  (add-hook 'c-mode-hook 'linux-c-indent)
+  (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
+  (add-hook 'c++-mode-hook 'linux-c-indent)
+
+  (semantic-mode t)
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
+
+  (global-semantic-idle-scheduler-mode t)
+  (global-semanticdb-minor-mode t)
+  (global-semantic-idle-summary-mode t)
+  (global-semantic-idle-completions-mode t)
+  (global-semantic-highlight-func-mode t)
+  (global-semantic-decoration-mode t)
+  (global-semantic-stickyfunc-mode t)
+  (global-semantic-mru-bookmark-mode t)
+  (setq-default semantic-symref-tool "global")
+
+  (semanticdb-enable-gnu-global-databases 'c++-mode)
+  (semanticdb-enable-gnu-global-databases 'c-mode)
+  (semanticdb-enable-gnu-global-databases 'python-mode)
   )
 
 ;; Editor init
@@ -310,9 +352,15 @@
   (editor/helm-gtags)
 
   ;; Scrolling
+  (editor/sublimity)
   (editor/smooth-scrolling)
   (editor/etc)
 
   ;; code style
   (linux-c-indent)
+
+  ;; editor general
+  (editor/general)
+  (editor/flycheck)
+  (editor/better-default)
   )

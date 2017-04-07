@@ -55,6 +55,43 @@
     :bind (("C-b" . anything-mini))
     ))
 
+;; ▼ highlight-symbol
+(defun scope/highlight-symbol ()
+  "highlight-symbol init"
+  (use-package highlight-symbol
+    :ensure t
+    :bind (([f3] . highlight-symbol-at-point)
+           ([f4] . highlight-symbol-remove-all)))
+  )
+
+;; ▼ ORG-MODE
+(defun scope/org-bullets ()
+  "org bullets init"
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    :init
+    (setq org-todo-keywords
+          '((sequence
+             "TODO(t)"  ; next action
+             "TOBLOG(b)"  ; next action
+             "STARTED(s)"
+             "WAITING(w@/!)"
+             "SOMEDAY(.)" "|" "DONE(x!)" "CANCELLED(c@)")
+            (sequence "LEARN" "TRY" "TEACH" "|" "COMPLETE(x)")
+            (sequence "TOSKETCH" "SKETCHED" "|" "POSTED")
+            (sequence "TOBUY" "TOSHRINK" "TOCUT"  "TOSEW" "|" "DONE(x)")
+            (sequence "TODELEGATE(-)" "DELEGATED(d)" "|" "COMPLETE(x)")))
+    (setq org-todo-keyword-faces
+          '(("TODO" . (:foreground "green" :weight bold))
+            ("DONE" . (:foreground "cyan" :weight bold))
+            ("WAITING" . (:foreground "red" :weight bold))
+            ("SOMEDAY" . (:foreground "gray" :weight bold))))
+    (setq org-log-done 'time)
+    )
+  )
+
 ;; Appearance Init
 (defun appearance/init ()
   
@@ -66,4 +103,8 @@
   (scope/winmove-init)
   (scope/highlight-indent-init)
   (scope/better-default-init)
-  (scope/anything-init))
+  (scope/anything-init)
+
+  ;; scope org init
+  (scope/org-bullets)
+  )
