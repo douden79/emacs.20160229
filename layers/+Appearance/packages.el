@@ -8,6 +8,15 @@
     (load-theme 'monokai t)
     ))
 
+;; ▶ initialize leuven theme.
+(defun theme/leuven-init ()
+  "Leuven theme install."
+  (use-package leuven-theme
+    :ensure t
+    :init
+    (load-theme 'leuven t))
+  )
+
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
 
@@ -96,7 +105,8 @@
 (defun appearance/init ()
   
   ;; Theme Init
-  (theme/monokai-init)
+  ;;(theme/monokai-init)
+  (theme/leuven-init)
   
   ;; Scopes Init
   (scope/beacon-init)
