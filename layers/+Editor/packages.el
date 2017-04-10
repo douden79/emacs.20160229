@@ -363,4 +363,7 @@
   (editor/general)
   (editor/flycheck)
   (editor/better-default)
+
+  ;; font
+  (editor/font)
   )
