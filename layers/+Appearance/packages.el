@@ -100,8 +100,16 @@
     (setq org-log-done 'time)
     )
   )
-
-;; Appearance Init
+;; ▼ powerline evil
+(defun scope/powerline ()
+  "powerline evil"
+  (use-package powerline-evil
+    :ensure t
+    :init (evil-mode 1)
+    (powerline-evil-center-color-theme)
+    )
+  )
+    ;; Appearance Init
 (defun appearance/init ()
   
   ;; Theme Init
@@ -117,4 +125,5 @@
 
   ;; scope org init
   (scope/org-bullets)
+  (scope/powerline)
   )
