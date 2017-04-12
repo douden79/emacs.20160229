@@ -270,9 +270,23 @@
 ;; font setting.
 (defun editor/font ()
   "font setting"
-  (setq face-font-rescale-alist
-        '((".*hiragino.*" . 1.0)
-          (".*Gulim.*" . 1.0)))
+    ;; default Latin font (e.g. Consolas)
+  ;; but I use Monaco 
+  (set-face-attribute 'default nil :family "Envy Code R")
+
+  ;; default font size (point * 10)
+  ;;
+  ;; WARNING!  Depending on the default font,
+  ;; if the size is not supported very well, the frame will be clipped
+  ;; so that the beginning of the buffer may not be visible correctly. 
+  (set-face-attribute 'default nil :height 130)
+
+  ;; use specific font for Korean charset.
+  ;; if you want to use different font size for specific charset,
+  ;; add :size POINT-SIZE in the font-spec.
+  (set-fontset-font t 'hangul (font-spec :name "한겨레결체"))
+
+  ;; you may want to add different for other charset in this way.
   (set-language-environment "Korean")
   )
 
