@@ -106,9 +106,19 @@
   (use-package powerline-evil
     :ensure t
     :init (evil-mode 1)
-    (powerline-evil-center-color-theme)
+    (powerline-default-theme t)
     )
   )
+
+;; ▼ emacs basic appearance
+(defun scope/emacs-basic ()
+  "emacs basic appearance"
+  ;; ediff
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+  ;; left/right split window
+  (setq ediff-split-window-function 'split-window-horizontally)
+  )
+
     ;; Appearance Init
 (defun appearance/init ()
   
@@ -125,5 +135,7 @@
 
   ;; scope org init
   (scope/org-bullets)
-  (scope/powerline)
+  ;;(scope/powerline)
+  ;; emacs basic
+  (scope/emacs-basic)
   )
