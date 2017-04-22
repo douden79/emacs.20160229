@@ -108,6 +108,8 @@
   "nlinum init"
   (global-nlinum-mode t)
   (setq nlinum-format "%4d")
+  (global-hl-line-mode 1)
+  (global-hl-line-highlight)
   )
 
 ;; sublimity : smooth scrolling
@@ -116,8 +118,8 @@
   (use-package sublimity
     :ensure t
     :config
-    (setq sumlimity-scroll-weight 2
-          sublimity-scroll-drift-length 2)
+    (setq sumlimity-scroll-weight 5
+          sublimity-scroll-drift-length 5)
     (setq sublimity-attractive-centering-width 110))
   )
 
