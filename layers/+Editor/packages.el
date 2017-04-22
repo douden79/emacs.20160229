@@ -345,8 +345,8 @@
   (editor/multiplecursor)
 
   ;; Hlinum
-  (editor/hlinum)
-  (editor/linum)
+;;  (editor/hlinum)
+;;  (editor/linum)
   (editor/sublimity)
   (editor/bm)
   (editor/dired+)
