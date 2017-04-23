@@ -7,6 +7,15 @@
     ("M-x" . smex)))
 
 ;; ▶ General
+;; ▼ Company mode
+(defun editor/company ()
+  "Company mode"
+  (use-package company
+    :ensure t
+    :init (add-hook 'after-init-hook 'global-company-mode)
+    )
+  )
+
 ;; ▼ CodeComplete ( Autocomplete, yasnippet )
 (defun editor/autocomplete ()
   "autocomplete init"
@@ -184,8 +193,17 @@
     (add-hook 'c-mode-hook 'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+    ;; Helm gtags setup
+    (setq helm-gtags-ignore-case t
+          helm-gtags-auto-update t
+          helm-gtags-use-input-at-cursor t
+          helm-gtags-pulse-at-cursor t
+          helm-gtags-suggested-key-mapping t
+          )
     )
   )
+
 ;; helm swoop
 (defun editor/helm-swoop ()
   "Helm swoop setting."
@@ -267,6 +285,10 @@
 
   ;; you may want to add different for other charset in this way.
   (set-language-environment "Korean")
+
+  ;; font lock no delay
+  (setq jit-lock-defer-time 0.03)
+  (setq font-lock-maximum-decoration t)
   )
 
 ;; editor etc settings.
@@ -313,8 +335,8 @@
   (better/smex)
   
   ;; Autocomplete
-  (editor/autocomplete)
-  (editor/yasnippet)
+;;  (editor/autocomplete)
+;;  (editor/yasnippet)
 
   ;; code folding
   (editor/hideshowvis)
@@ -325,7 +347,6 @@
 
   ;; Hlinum
   (editor/nlinum)
-  (editor/sublimity)
   (editor/bm)
   (editor/dired+)
 
@@ -358,4 +379,10 @@
 
   ;; font
   (editor/font)
+
+  ;; editor company
+  (editor/company)
+
+  ;; editor helm-swoop
+  (editor/helm-swoop)
   )
