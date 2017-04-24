@@ -26,6 +26,10 @@
 (defvar layer-editor-dir (expand-file-name "+Editor/packages.el" emacs-layers-dir)
   "This Directory Editor.")
 
+;; global nlinum directory
+(defvar layer-editor-nlinum-dir (expand-file-name "+Editor/nlinum/nlinum.el" emacs-layers-dir)
+  "This Directory nlinum dir.")
+
 ;; ▶ Build/Debugger Directory.
 (defvar layer-build-dir (expand-file-name "+Build/packages.el" emacs-layers-dir)
   "This Directory Build/Debugger.")
@@ -46,6 +50,7 @@
 (defun emacs/load-editor-dir ()
   "emacs editor directory load path."
   (load-file layer-editor-dir)
+  (load-file layer-editor-nlinum-dir)
   (editor/init))
 
 ;; ▶ add build/debugging path init
