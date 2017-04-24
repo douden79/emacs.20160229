@@ -7,15 +7,6 @@
     ("M-x" . smex)))
 
 ;; ▶ General
-;; ▼ Company mode
-(defun editor/company ()
-  "Company mode"
-  (use-package company
-    :ensure t
-    :init (add-hook 'after-init-hook 'global-company-mode)
-    )
-  )
-
 ;; ▼ CodeComplete ( Autocomplete, yasnippet )
 (defun editor/autocomplete ()
   "autocomplete init"
@@ -26,6 +17,14 @@
     (setq ac-auto-start 1)
     (setq ac-auto-show-menu 0.1)
     (ac-set-trigger-key "TAB"))
+  )
+;; ▼ Company mode
+(defun editor/company ()
+  "Company mode"
+  (use-package company
+    :ensure t
+    :init (add-hook 'after-init-hook 'global-company-mode)
+    )
   )
 
 ;; ▼ yasnippet
@@ -112,13 +111,34 @@
     )
   )
 
-;; nlinum
-(defun editor/nlinum ()
-  "nlinum init"
-  (global-nlinum-mode t)
-  (setq nlinum-format "%4d")
-  (global-hl-line-mode 1)
-  (global-hl-line-highlight)
+;; hlinum
+(defun editor/hlinum ()
+  "hlinum init"
+  (use-package hlinum
+    :ensure t
+    :config
+    (global-linum-mode t)
+    (defun linum-update-window-scale-fix (win)
+      "fix linum for scaled text"
+      (set-window-margins win
+                          (ceiling (* (if (boundp 'text-scale-mode-step)
+                                          (expt text-scale-mode-step
+                                                text-scale-mode-amount) 1)
+                                      (if (car (window-margins))
+                                          (car (window-margins)) 1)))))
+    (advice-add #'linum-update-window :after #'linum-update-window-scale-fix))
+  )
+
+;; linum
+(defun editor/linum ()
+  "linum init"
+  (use-package linum
+    :ensure t
+    :config
+    (global-hl-line-mode +1)
+    (setq linum-format "%-4d"))
+  (column-number-mode t)
+  (size-indication-mode t)
   )
 
 ;; sublimity : smooth scrolling
@@ -127,8 +147,8 @@
   (use-package sublimity
     :ensure t
     :config
-    (setq sumlimity-scroll-weight 5
-          sublimity-scroll-drift-length 5)
+    (setq sumlimity-scroll-weight 2
+          sublimity-scroll-drift-length 2)
     (setq sublimity-attractive-centering-width 110))
   )
 
@@ -193,17 +213,8 @@
     (add-hook 'c-mode-hook 'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-    ;; Helm gtags setup
-    (setq helm-gtags-ignore-case t
-          helm-gtags-auto-update t
-          helm-gtags-use-input-at-cursor t
-          helm-gtags-pulse-at-cursor t
-          helm-gtags-suggested-key-mapping t
-          )
     )
   )
-
 ;; helm swoop
 (defun editor/helm-swoop ()
   "Helm swoop setting."
@@ -253,6 +264,14 @@
   (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
   (add-hook 'c++-mode-hook 'linux-c-indent)
   )
+;; nlinum
+(defun editor/nlinum ()
+  "nlinum init"
+  (global-nlinum-mode t)
+  (setq nlinum-format "%4d")
+  (global-hl-line-mode 1)
+  (global-hl-line-highlight)
+  )
 
 ;; ▼ flycheck
 (defun editor/flycheck ()
@@ -285,10 +304,6 @@
 
   ;; you may want to add different for other charset in this way.
   (set-language-environment "Korean")
-
-  ;; font lock no delay
-  (setq jit-lock-defer-time 0.03)
-  (setq font-lock-maximum-decoration t)
   )
 
 ;; editor etc settings.
@@ -335,8 +350,8 @@
   (better/smex)
   
   ;; Autocomplete
-;;  (editor/autocomplete)
-;;  (editor/yasnippet)
+  (editor/autocomplete)
+  (editor/yasnippet)
 
   ;; code folding
   (editor/hideshowvis)
@@ -346,7 +361,9 @@
   (editor/multiplecursor)
 
   ;; Hlinum
-  (editor/nlinum)
+;;  (editor/hlinum)
+;;  (editor/linum)
+  (editor/sublimity)
   (editor/bm)
   (editor/dired+)
 
@@ -380,9 +397,7 @@
   ;; font
   (editor/font)
 
-  ;; editor company
-  (editor/company)
-
-  ;; editor helm-swoop
-  (editor/helm-swoop)
+  ;; company
+  ;; nlinum
+  (editor/nlinum)
   )
