@@ -213,8 +213,16 @@
     (add-hook 'c-mode-hook 'helm-gtags-mode)
     (add-hook 'c++-mode-hook 'helm-gtags-mode)
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    (add-hook 'dired-mode-hook 'helm-gtags-mode)
+
+    ;; gtags setting
+    (setq helm-gtags-ignore-case t
+          helm-gtags-auto-update t
+          helm-gtags-use-input-at-cursor t
+          helm-gtags-pulse-at-cursor t)
     )
   )
+
 ;; helm swoop
 (defun editor/helm-swoop ()
   "Helm swoop setting."
@@ -341,6 +349,13 @@
   (semanticdb-enable-gnu-global-databases 'c++-mode)
   (semanticdb-enable-gnu-global-databases 'c-mode)
   (semanticdb-enable-gnu-global-databases 'python-mode)
+
+  (add-hook 'term-setup-hook
+  '(lambda ()
+     (define-key function-key-map "\e[1;9A" [M-up])
+     (define-key function-key-map "\e[1;9B" [M-down])
+     (define-key function-key-map "\e[1;9C" [M-right])
+     (define-key function-key-map "\e[1;9D" [M-left])))
   )
 
 ;; Editor init
