@@ -17,6 +17,15 @@
     (load-theme 'leuven t))
   )
 
+;; ▶ initialize spacemacs theme.
+(defun theme/spacemacs-init ()
+  "Spacemacs theme install."
+  (use-package spacemacs-theme
+    :ensure t
+    :init
+    (load-theme 'spacemacs-light t))
+  )
+
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
 
@@ -46,6 +55,7 @@
     :config (add-hook 'c-mode-hook 'highlight-indent-guides-mode)
     (add-hook 'c++-mode-hook 'highlight-indent-guides-mode)
     (add-hook 'shell-script-mode 'highlight-indent-guides-mode)
+    (add-hook 'python-mode-hook 'highlight-indent-guides-mode)
     :init (setq highlight-indent-guides-method 'character)))
 
 ;; ▼ better default
@@ -124,7 +134,8 @@
   
   ;; Theme Init
   ;;(theme/monokai-init)
-  (theme/leuven-init)
+  ;;(theme/leuven-init)
+  (theme/spacemacs-init)
   
   ;; Scopes Init
   (scope/beacon-init)
