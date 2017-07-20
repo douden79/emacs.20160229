@@ -159,7 +159,18 @@
     :ensure t
     :init (setq dired-dwim-target t))
   )
-
+;; markdown
+(defun editor/markdown ()
+  "markdown mode"
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+            ("\\.md\\'" . markdown-mode)
+            ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+  )
+  
 ;; bm bookmark
 (defun editor/bm ()
   "Bookmark package"
@@ -225,11 +236,12 @@
 
 ;; helm swoop
 (defun editor/helm-swoop ()
-  "Helm swoop setting."
+  "Helm swoop setting and helm-imenu."
 (use-package helm-swoop
   :ensure t
   :bind (("C-c o" . helm-swoop)
-         ("C-c O" . helm-multi-swoop)))
+         ("C-c O" . helm-multi-swoop)
+         ("C-f" . helm-imenu))
 )
 
 ;; ▼ ECB
@@ -237,7 +249,7 @@
   "ECB IDE init"
   (use-package ecb
     :ensure t)
-  :init (setq ecb-layout-name "right1")
+  :init (setq ecb-layout-name "left8")
   (setq ecb-examples-bufferinfo-buffer-name nil)
   (setq stack-trace-on-error t)
   (setq ecb-version-check nil)
@@ -408,6 +420,7 @@
   (editor/general)
   (editor/flycheck)
   (editor/better-default)
+;;  (editor/markdown)
 
   ;; font
   (editor/font)
