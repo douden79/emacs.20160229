@@ -241,7 +241,7 @@
   :ensure t
   :bind (("C-c o" . helm-swoop)
          ("C-c O" . helm-multi-swoop)
-         ("C-f" . helm-imenu))
+         ("C-f" . helm-imenu)))
 )
 
 ;; ▼ ECB
