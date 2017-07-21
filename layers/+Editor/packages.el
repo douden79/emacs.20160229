@@ -4,7 +4,8 @@
   (use-package smex
     :ensure t
     :bind
-    ("M-x" . smex)))
+    ("M-x" . smex)
+    ("C-f" . helm-imenu)))
 
 ;; ▶ General
 ;; ▼ CodeComplete ( Autocomplete, yasnippet )
@@ -237,12 +238,11 @@
 ;; helm swoop
 (defun editor/helm-swoop ()
   "Helm swoop setting and helm-imenu."
-(use-package helm-swoop
-  :ensure t
-  :bind (("C-c o" . helm-swoop)
-         ("C-c O" . helm-multi-swoop)
-         ("C-f" . helm-imenu)))
-)
+  (use-package helm-swoop
+    :ensure t
+    :bind (("C-c o" . helm-swoop)
+           ("C-c O" . helm-multi-swoop)))
+  )
 
 ;; ▼ ECB
 (defun editor/ecb ()
