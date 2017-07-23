@@ -53,6 +53,25 @@
              (append '(ac-source-yasnippet) ac-sources)))))
   )
 
+;; ▼emacs console mode keybindings.
+(defun editor/nw-keybindings ()
+  "nw keybindings"
+  ;; Meta keys
+  (bind-key "≈" 'smex)
+
+  ;; bm-toggle
+  (bind-key "£" 'bm-toggle)
+  (bind-key "™" 'bm-next)
+  (bind-key "¡" 'bm-previous)
+
+  ;; helm-gtags
+  (bind-key "†" 'helm-gtags-pop-stack)
+  (bind-key "‘" 'helm-gtags-find-tag)
+  (bind-key "“" 'helm-gtags-find-rtag)
+  (bind-key "≥" 'helm-gtags-dwim)
+  (bind-key "≤" 'helm-gtags-tags-in-this-function)
+   )
+
 ;; ▼ better default/ido-mode
 (defun editor/better-default ()
   "better-default init"
@@ -244,6 +263,15 @@
            ("C-c O" . helm-multi-swoop)))
   )
 
+;; helm-bind-key
+(defun editor/helm-bind-key ()
+  "provides helm interface for bind-key. making customize key binding in helm"
+  (use-package helm-bind-key
+    :ensure t
+    ;; Not implimantation in helm bind key.
+    )
+  )
+
 ;; ▼ ECB
 (defun editor/ecb ()
   "ECB IDE init"
@@ -428,4 +456,10 @@
   ;; company
   ;; nlinum
   (editor/nlinum)
+
+  ;; emacs console mode keybindings
+  (editor/nw-keybindings)
+
+  ;; helm bind-key
+  (editor/helm-bind-key)
   )
