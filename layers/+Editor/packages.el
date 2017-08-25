@@ -277,7 +277,7 @@
   "ECB IDE init"
   (use-package ecb
     :ensure t)
-  :init (setq ecb-layout-name "left8")
+  :init (setq ecb-layout-name "left-symboldef")
   (setq ecb-examples-bufferinfo-buffer-name nil)
   (setq stack-trace-on-error t)
   (setq ecb-version-check nil)
@@ -304,10 +304,10 @@
 (defun linux-c-indent ()
   "adjusted defaults for C/C++ mode use with the Linux kernel."
   (interactive)
-  (setq tab-width 8)
+  (setq tab-width 4)
   ;;force spaces, to work with dumber editors
   (setq indent-tabs-mode nil) 
-  (setq c-basic-offset 8)
+  (setq c-basic-offset 4)
   (add-hook 'c-mode-hook 'linux-c-indent)
   (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
   (add-hook 'c++-mode-hook 'linux-c-indent)
@@ -396,6 +396,12 @@
      (define-key function-key-map "\e[1;9B" [M-down])
      (define-key function-key-map "\e[1;9C" [M-right])
      (define-key function-key-map "\e[1;9D" [M-left])))
+
+  ;; ecb-moving shortcut
+  (define-key ecb-mode-map (kbd "M-1" 'ecb-goto-window-sources))
+  (define-key ecb-mode-map (kbd "M-2" 'ecb-goto-window-methods))
+  (define-key ecb-mode-map (kbd "M-3" 'ecb-goto-window-symboldef))
+  (define-ley ecb-mode-map (kbd "M-4" 'ecb-goto-window-edit1))
   )
 
 ;; Editor init
