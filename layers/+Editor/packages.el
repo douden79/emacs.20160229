@@ -70,7 +70,16 @@
   (bind-key "“" 'helm-gtags-find-rtag)
   (bind-key "≥" 'helm-gtags-dwim)
   (bind-key "≤" 'helm-gtags-tags-in-this-function)
-   )
+  )
+
+;; ▼emacs ecb-keybindings.
+(defun editor/ecb-keybindings ()
+  "ecb keybindings"
+
+  (bind-key "M-1" 'ecb-goto-window-sources)
+  (bind-key "M-2" 'ecb-goto-window-methods)
+  (bind-key "M-3" 'ecb-goto-window-symboldef)
+  (bind-key "M-4" 'ecb-goto-window-edit1))
 
 ;; ▼ better default/ido-mode
 (defun editor/better-default ()
@@ -396,12 +405,6 @@
      (define-key function-key-map "\e[1;9B" [M-down])
      (define-key function-key-map "\e[1;9C" [M-right])
      (define-key function-key-map "\e[1;9D" [M-left])))
-
-  ;; ecb-moving shortcut
-  (define-key ecb-mode-map (kbd "M-1" 'ecb-goto-window-sources))
-  (define-key ecb-mode-map (kbd "M-2" 'ecb-goto-window-methods))
-  (define-key ecb-mode-map (kbd "M-3" 'ecb-goto-window-symboldef))
-  (define-ley ecb-mode-map (kbd "M-4" 'ecb-goto-window-edit1))
   )
 
 ;; Editor init
@@ -465,6 +468,7 @@
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
+  (editor/ecb-keybindings)
 
   ;; helm bind-key
   (editor/helm-bind-key)
