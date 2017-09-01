@@ -313,7 +313,7 @@
 (defun linux-c-indent ()
   "adjusted defaults for C/C++ mode use with the Linux kernel."
   (interactive)
-  (setq tab-width 4)
+;;  (setq tab-width 4)
   ;;force spaces, to work with dumber editors
   (setq indent-tabs-mode nil) 
   (setq c-basic-offset 4)
@@ -405,6 +405,9 @@
      (define-key function-key-map "\e[1;9B" [M-down])
      (define-key function-key-map "\e[1;9C" [M-right])
      (define-key function-key-map "\e[1;9D" [M-left])))
+
+  ;;  large file open warning popup.
+  (setq large-file-warning-threshold nil)
   )
 
 ;; Editor init
