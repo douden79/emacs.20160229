@@ -277,6 +277,23 @@
     )
   )
 
+;; Helm cscope
+(defun editor/helm-cscope ()
+  "Helm cscope settings."
+  (use-package helm-cscope
+    :ensure t
+    :command (helm-cscope-mode helm-cscope-find-this-symbol)
+    :bind (("C-c" . helm-cscope-find-called-function)
+           ("C-]" . helm-cscope-find-global-definition)
+           ("C-[" . helm-cscope-pop-mark))
+    :init
+    (add-hook 'c-mode-hook 'helm-cscope-mode)
+    (add-hook 'c++-mode-hook 'helm-cscope-mode)
+    (add-hook 'asm-mode-hook 'helm-cscope-mode)
+    )
+  )
+ 
+
 ;; helm swoop
 (defun editor/helm-swoop ()
   "Helm swoop setting and helm-imenu."
@@ -461,6 +478,7 @@
   (editor/helm-projectile)
   (editor/ecb)
   (editor/helm-gtags)
+  (editor/helm-cscope)
 
   ;; Scrolling
   (editor/sublimity)
