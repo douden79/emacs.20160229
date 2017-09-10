@@ -233,6 +233,20 @@
     )
   )
 
+;; auto-highlight-symbol
+(defun editor/auto-highlight-symbol ()
+  "thils only installs it for programming mode derivatives. you can also makeit global.."
+  (use-package auto-highlight-symbol
+    :ensure t
+    :init (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+    (global-auto-highlight-symbol-mode t)
+    :bind (:map auto-highlight-symbol-mode-map
+                ("M-p" . ahs-backward)
+                ("M-n" . ahs-forward)
+                )
+    )
+  )
+
 ;; ▶ IDE
 ;; ▼ Helm Packages
 (defun editor/helm-gtags ()
@@ -460,6 +474,7 @@
   (editor/general)
   (editor/flycheck)
   (editor/better-default)
+  (editor/auto-highlight-symbol)
 ;;  (editor/markdown)
 
   ;; font
