@@ -73,13 +73,13 @@
   )
 
 ;; ▼emacs ecb-keybindings.
-(defun editor/ecb-keybindings ()
-  "ecb keybindings"
-
-  (bind-key "M-1" 'ecb-goto-window-sources)
-  (bind-key "M-2" 'ecb-goto-window-methods)
-  (bind-key "M-3" 'ecb-goto-window-symboldef)
-  (bind-key "M-4" 'ecb-goto-window-edit1))
+;;(defun editor/ecb-keybindings ()
+;;  "ecb keybindings"
+;;
+;;  (bind-key "M-1" 'ecb-goto-window-sources)
+;;  (bind-key "M-2" 'ecb-goto-window-methods)
+;;  (bind-key "M-3" 'ecb-goto-window-symboldef)
+;;  (bind-key "M-4" 'ecb-goto-window-edit1))
 
 ;; ▼ better default/ido-mode
 (defun editor/better-default ()
@@ -288,9 +288,9 @@
 ;;           ("C-]" . helm-cscope-find-global-definition)
     ;;           ("C-[" . helm-cscope-pop-mark))
     :init
-    (bind-key "M-c" 'helm-cscope-find-called-function)
-    (bind-key "M-]" 'helm-cscope-find-global-definition)
-    (bind-key "M-[" 'helm-cscope-pop-mark)
+    (bind-key "C-c" 'helm-cscope-find-called-function)
+    (bind-key "C-]" 'helm-cscope-find-global-definition)
+;;    (bind-key "C-[" 'helm-cscope-pop-mark)
     (add-hook 'c-mode-hook 'helm-cscope-mode)
     (add-hook 'c++-mode-hook 'helm-cscope-mode)
     (add-hook 'asm-mode-hook 'helm-cscope-mode)
@@ -508,7 +508,7 @@
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
-  (editor/ecb-keybindings)
+;;  (editor/ecb-keybindings)
 
   ;; helm bind-key
   (editor/helm-bind-key)
