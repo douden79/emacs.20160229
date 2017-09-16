@@ -26,6 +26,13 @@
     (load-theme 'spacemacs-light t))
   )
 
+;;  ▶ initialize monokai-alt-theme
+(defun theme/monokai-alt-init ()
+  "monokai alt theme install."
+  (use-package monokai-alt-theme
+    :ensure t
+    :init
+    (load-theme 'monokai-alt t)))
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
 
@@ -135,7 +142,8 @@
   ;; Theme Init
   ;;(theme/monokai-init)
   ;;(theme/leuven-init)
-  (theme/spacemacs-init)
+  ;;(theme/spacemacs-init)
+  (theme/monokai-alt-init)
   
   ;; Scopes Init
   (scope/beacon-init)
