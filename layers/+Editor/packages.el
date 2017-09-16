@@ -473,7 +473,7 @@
   (editor/highlightsymbol)
 
   ;; function
-  (editor/function-args)
+;;  (editor/function-args)
 
   ;; file/modify
   (editor/vlf)
