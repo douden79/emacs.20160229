@@ -408,6 +408,12 @@
    whitespace-line-column 80
    whitespace-style       '(face lines-tail))
   )
+(defun my-font-lock-function (start end)
+  "Set faces for font-lock between START and END.")
+
+(defun my-font-lock-matcher (limit)
+  (my-font-lock-function (point) limit)
+  nil)
 
 ;; editor general settings.
 (defun editor/general ()
@@ -445,9 +451,13 @@
   (setq large-file-warning-threshold nil)
 
   ;; Improved Font Lock Speed
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t
-	font-lock-maximum-size nil)
+  (setq font-lock-defaults
+        (list
+         "Font lock speed improved"
+         `(my-font-lock-matcher (1 font-lock-keyword-face nil))))
+;;(global-font-lock-mode t)
+;;(setq font-lock-maximum-decoration t
+;;	font-lock-maximum-size nil)
 ;;(setq font-lock-support-mode 'fast-lock-mode
 ;;	fast-lock-cache-directories '("~/.emacs-flc"))
   )
