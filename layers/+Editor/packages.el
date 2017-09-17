@@ -443,6 +443,13 @@
 
   ;;  large file open warning popup.
   (setq large-file-warning-threshold nil)
+
+  ;; Improved Font Lock Speed
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t
+	font-lock-maximum-size nil)
+;;(setq font-lock-support-mode 'fast-lock-mode
+;;	fast-lock-cache-directories '("~/.emacs-flc"))
   )
 
 ;; Editor init
