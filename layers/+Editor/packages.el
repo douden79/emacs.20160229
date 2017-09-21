@@ -459,7 +459,7 @@
 ;;(setq font-lock-maximum-decoration t
 ;;	font-lock-maximum-size nil)
 ;;(setq font-lock-support-mode 'fast-lock-mode
-;;	fast-lock-cache-directories '("~/.emacs-flc"))
+  ;;	fast-lock-cache-directories '("~/.emacs-flc"))
   )
 
 ;; Editor init
@@ -521,7 +521,7 @@
 
   ;; company
   ;; nlinum
-  (editor/nlinum)
+  ;;(editor/nlinum)
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
