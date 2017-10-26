@@ -17,6 +17,15 @@
     (load-theme 'leuven t))
   )
 
+;; ▶ initialize draculra theme.
+(defun theme/dracula-init ()
+  "Draculra theme install."
+  (use-package draculra-theme
+    :ensure t
+    :init
+    (load-theme 'dracula t))
+  )
+
 ;; ▶ initialize spacemacs theme.
 (defun theme/spacemacs-init ()
   "Spacemacs theme install."
@@ -143,7 +152,8 @@
   ;;(theme/monokai-init)
   ;;(theme/leuven-init)
   ;;(theme/spacemacs-init)
-  (theme/monokai-alt-init)
+  ;;(theme/monokai-alt-init)
+  (theme/dracula-init)
   
   ;; Scopes Init
   (scope/beacon-init)

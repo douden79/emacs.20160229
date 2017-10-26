@@ -106,6 +106,19 @@
              (set-default 'semantic-case-fold t))
   )
 
+;; ▼ highlighting inc and bb file.
+(defun editor/etc-highlight ()
+  "etc-highlight"
+  (setq auto-mode-alist
+        (cons '("\\.mak\\'" . makefile-mode) auto-mode-alist))
+  (setq auto-mode-alist
+        (cons '("\\.bb\\'" . makefile-mode) auto-mode-alist))
+  (setq auto-mode-alist
+        (cons '("\\.inc\\'" . makefile-mode) auto-mode-alist))
+  (setq auto-mode-alist
+        (cons '("\\.conf\\'" . makefile-mode) auto-mode-alist))
+  )
+
 ;; ▶ Appearance
 
 ;; ▼ Editor modify
@@ -469,8 +482,8 @@
   (better/smex)
   
   ;; Autocomplete
-  (editor/autocomplete)
-  (editor/yasnippet)
+  ;;(editor/autocomplete)
+  ;;(editor/yasnippet)
 
   ;; code folding
   (editor/hideshowvis)
@@ -522,6 +535,7 @@
   ;; company
   ;; nlinum
   ;;(editor/nlinum)
+  (editor/etc-highlight)
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
