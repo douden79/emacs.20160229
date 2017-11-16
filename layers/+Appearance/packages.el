@@ -42,6 +42,15 @@
     :ensure t
     :init
     (load-theme 'monokai-alt t)))
+
+;;  ▶ initialize atom-alt-theme
+(defun theme/atom-one-dark-init ()
+  "monokai alt theme install."
+  (use-package atom-one-dark-theme
+    :ensure t
+    :init
+    (load-theme 'atom-one-dark t)))
+
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
 
@@ -153,7 +162,8 @@
   ;;(theme/leuven-init)
   ;;(theme/spacemacs-init)
   ;;(theme/monokai-alt-init)
-  (theme/dracula-init)
+  ;;(theme/dracula-init)
+  (theme/atom-one-dark-init)
   
   ;; Scopes Init
   (scope/beacon-init)
