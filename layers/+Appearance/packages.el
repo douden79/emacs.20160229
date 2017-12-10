@@ -51,6 +51,14 @@
     :init
     (load-theme 'atom-one-dark t)))
 
+;; ▶ initialize hemisu-theme
+(defun theme/hemisu-init ()
+  "hemisu theme install."
+  (use-package hemisu-theme
+    :ensure t
+    :init
+    (load-theme 'hemisu-light t)))
+
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
 
@@ -163,12 +171,13 @@
   ;;(theme/spacemacs-init)
   ;;(theme/monokai-alt-init)
   ;;(theme/dracula-init)
-  (theme/atom-one-dark-init)
+  ;;(theme/atom-one-dark-init)
+  (theme/hemisu-init)
   
   ;; Scopes Init
   (scope/beacon-init)
   (scope/winmove-init)
-  ;;(scope/highlight-indent-init)
+  (scope/highlight-indent-init)
   (scope/better-default-init)
   (scope/anything-init)
 
