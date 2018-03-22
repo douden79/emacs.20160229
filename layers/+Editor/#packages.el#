@@ -467,7 +467,7 @@
 ;;  (editor/linum)
   (editor/sublimity)
   (editor/bm)
-  (editor/dired+)
+  ;;(editor/dired+)
 
   ;; color/symbol
   (editor/highlightsymbol)

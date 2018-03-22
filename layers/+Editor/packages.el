@@ -144,13 +144,9 @@
   (use-package multiple-cursors
     :ensure t
     :bind (("C-l" . mc/edit-lines)
-           ("C-;" . mc/mark-all-like-this)))
+           ("C-;" . mc/mark-all-like-this)
+           ("C-'" . mc/mark-all-words-like-this)))
   )
-
-(use-package multiple-cursors
-:ensure t
-:bind (("C-l" . mc/edit-lines)
-("C-;" . mc/mark-all-like-this)))
 
 ;; search igrep
 (defun editor/igrep ()
@@ -209,6 +205,7 @@
     :ensure t
     :init (setq dired-dwim-target t))
   )
+
 ;; markdown
 (defun editor/markdown ()
   "markdown mode"
@@ -250,7 +247,9 @@
   (use-package highlight-symbol
     :ensure t
     :bind (([f3] . highlight-symbol-at-point)
-           ([f4] . highlight-symbol-remove-all))
+           ([f4] . highlight-symbol-remove-all)
+           ("M-<left>" . highlight-symbol-next)
+           ("M-<right>" . highlight-symbol-prev))
     )
   )
 
@@ -309,7 +308,7 @@
 ;;           ("C-]" . helm-cscope-find-global-definition)
     ;;           ("C-[" . helm-cscope-pop-mark))
     :init
-    (bind-key "M-c" 'helm-cscope-find-callinig-this-function)
+    (bind-key "M-c" 'helm-cscope-find-calling-this-function)
     (bind-key "M-]" 'helm-cscope-find-global-definition)
     (bind-key "M-[" 'helm-cscope-pop-mark)
     (add-hook 'c-mode-hook 'helm-cscope-mode)
@@ -382,8 +381,8 @@
   "nlinum init"
   (global-nlinum-mode t)
   (setq nlinum-format "%4d")
-  (global-hl-line-mode 1)
-  (global-hl-line-highlight)
+;;  (global-hl-line-mode 1)
+;;  (global-hl-line-highlight)
   )
 
 ;; ▼ flycheck
@@ -443,6 +442,7 @@
   (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
   (add-hook 'c++-mode-hook 'linux-c-indent)
 
+  (setq dired-dwim-target t)
   (semantic-mode t)
 ;;  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
 ;;  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
@@ -490,11 +490,11 @@
   (better/smex)
   
   ;; Autocomplete
-  ;;(editor/autocomplete)
+  (editor/autocomplete)
   ;;(editor/yasnippet)
 
   ;; code folding
-  (editor/hideshowvis)
+  ;;(editor/hideshowvis)
 
   ;; Editor modify
   (editor/igrep)
@@ -505,13 +505,13 @@
 ;;  (editor/linum)
   (editor/sublimity)
   (editor/bm)
-  (editor/dired+)
+  ;;(editor/dired+)
 
   ;; color/symbol
   (editor/highlightsymbol)
 
   ;; function
-;;  (editor/function-args)
+  (editor/function-args)
 
   ;; file/modify
   (editor/vlf)
@@ -534,7 +534,7 @@
   (editor/general)
   (editor/flycheck)
   (editor/better-default)
-  (editor/auto-highlight-symbol)
+  ;;(editor/auto-highlight-symbol)
 ;;  (editor/markdown)
 
   ;; font
@@ -542,7 +542,7 @@
 
   ;; company
   ;; nlinum
-  ;;(editor/nlinum)
+  (editor/nlinum)
   (editor/etc-highlight)
 
   ;; emacs console mode keybindings

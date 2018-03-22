@@ -171,8 +171,8 @@
   ;;(theme/spacemacs-init)
   ;;(theme/monokai-alt-init)
   ;;(theme/dracula-init)
-  ;;(theme/atom-one-dark-init)
-  (theme/hemisu-init)
+  (theme/atom-one-dark-init)
+  ;;(theme/hemisu-init)
   
   ;; Scopes Init
   (scope/beacon-init)
