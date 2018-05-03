@@ -61,6 +61,23 @@
              (append '(ac-source-yasnippet) ac-sources)))))
   )
 
+;; python env settings
+;; sudo apt-get install python-pip
+;; pip install virtualenv
+;; pip install sexpdata
+;; pip install epc
+;; x-x jedi:install-server
+(defun editor/python ()
+  "install python env"
+  (use-package company-jedi
+    :ensure t
+    :init
+;;    (add-to-list 'company-backends 'company-jedi)
+    (add-hook 'python-mode-hook 'company-jedi-hook))
+  )
+
+
+
 ;; ▼emacs console mode keybindings.
 (defun editor/nw-keybindings ()
   "nw keybindings"
@@ -552,4 +569,5 @@
   ;; helm bind-key
   (editor/helm-bind-key)
   (editor/helm-cscope)
+  (editor/python)
   )
