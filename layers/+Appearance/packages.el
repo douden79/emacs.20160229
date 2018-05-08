@@ -51,6 +51,14 @@
     :init
     (load-theme 'atom-one-dark t)))
 
+;;  ▶ initialize atom-alt-theme
+(defun theme/material-init ()
+  "material theme install."
+  (use-package material-theme
+    :ensure t
+    :init
+    (load-theme 'material t)))
+
 ;; ▶ initialize hemisu-theme
 (defun theme/hemisu-init ()
   "hemisu theme install."
@@ -61,6 +69,22 @@
 
 ;; ▶ Menu/ToolBar
 ;; ▶ System Settings
+
+;; ▼ telephone-line
+(defun scope/telephone-init ()
+ "telephone line init"
+ (use-package telephone-line
+  :ensure t
+  :init 
+  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+   telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+   telephone-line-primary-right-separator 'telephone-line-cubed-right
+   telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+  (setq telephone-line-height 20
+   telephone-line-evil-use-short-tag t)
+  (telephone-line-mode t)
+ )
+ )
 
 ;; ▶ Scopes
 ;; ▼ beacon
@@ -171,7 +195,8 @@
   ;;(theme/spacemacs-init)
   ;;(theme/monokai-alt-init)
   ;;(theme/dracula-init)
-  (theme/atom-one-dark-init)
+  ;;(theme/atom-one-dark-init)
+  (theme/material-init)
   ;;(theme/hemisu-init)
   
   ;; Scopes Init
@@ -180,6 +205,7 @@
   (scope/highlight-indent-init)
   (scope/better-default-init)
   (scope/anything-init)
+  (scope/telephone-init)
 
   ;; scope org init
   (scope/org-bullets)
