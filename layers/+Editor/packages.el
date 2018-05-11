@@ -72,11 +72,33 @@
   (use-package company-jedi
     :ensure t
     :init
-;;    (add-to-list 'company-backends 'company-jedi)
-    (add-hook 'python-mode-hook 'company-jedi-hook))
+    (with-eval-after-load 'company
+      (add-to-list 'company-backends 'company-jedi))
+    (setq jedi:setup-keys t)
+    (setq jedi:complete-on-dot t)
+    (setq python-shell-completion-native-enable nil)
+    (add-hook 'python-mode-hook 'jedi:setup))
   )
 
+;; ▼jedi:server-install virtualenv does not exist
+(defun editor/exec-path-from-shell ()
+  "install exec-path-from-shell."
+  (use-package exec-path-from-shell
+    :ensure t
+    :init (when (memq window-system '(mac ns x))
+            (exec-path-from-shell-initialize))
+    (exec-path-from-shell-copy-env "PYTHONPATH"))
+  )
 
+;; ▼elpy
+(defun editor/elpy ()
+  "install elpy for python"
+  (use-package elpy
+    :ensure t
+    )
+  )
+
+;; 
 
 ;; ▼emacs console mode keybindings.
 (defun editor/nw-keybindings ()
@@ -569,5 +591,9 @@
   ;; helm bind-key
   (editor/helm-bind-key)
   (editor/helm-cscope)
+
+  ;; python settings
   (editor/python)
+  (editor/elpy)
+  (editor/exec-path-from-shell)
   )
