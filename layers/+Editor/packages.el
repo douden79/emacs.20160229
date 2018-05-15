@@ -76,6 +76,8 @@
       (add-to-list 'company-backends 'company-jedi))
     (setq jedi:setup-keys t)
     (setq jedi:complete-on-dot t)
+    (setq python-shell-interpreter "ipython")
+    (setq python-shell-interpreter-args "--simple-prompt -i")
     (setq python-shell-completion-native-enable nil)
     (add-hook 'python-mode-hook 'jedi:setup))
   )
