@@ -349,12 +349,12 @@
 ;;           ("C-]" . helm-cscope-find-global-definition)
     ;;           ("C-[" . helm-cscope-pop-mark))
     :init
-    (bind-key "M-c" 'helm-cscope-find-calling-this-function)
-    (bind-key "M-]" 'helm-cscope-find-global-definition)
-    (bind-key "M-[" 'helm-cscope-pop-mark)
-    (add-hook 'c-mode-hook 'helm-cscope-mode)
-    (add-hook 'c++-mode-hook 'helm-cscope-mode)
-    (add-hook 'asm-mode-hook 'helm-cscope-mode)
+    (bind-key "M-c" 'cscope-find-calling-this-function)
+    (bind-key "M-]" 'cscope-find-global-definition)
+    (bind-key "M-[" 'cscope-pop-mark)
+    (add-hook 'c-mode-hook 'cscope-mode)
+    (add-hook 'c++-mode-hook 'cscope-mode)
+    (add-hook 'asm-mode-hook 'cscope-mode)
     )
   )
  
@@ -596,6 +596,6 @@
 
   ;; python settings
   (editor/python)
-  (editor/elpy)
+;;  (editor/elpy)
   (editor/exec-path-from-shell)
   )
