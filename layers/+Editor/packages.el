@@ -349,7 +349,7 @@
 ;;           ("C-]" . helm-cscope-find-global-definition)
     ;;           ("C-[" . helm-cscope-pop-mark))
     :init
-    (bind-key "M-c" 'cscope-find-calling-this-function)
+    (bind-key "M-c" 'cscope-find-functions-calling-this-function)
     (bind-key "M-]" 'cscope-find-global-definition)
     (bind-key "M-[" 'cscope-pop-mark)
     (add-hook 'c-mode-hook 'cscope-mode)
