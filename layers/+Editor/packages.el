@@ -485,12 +485,12 @@
 
   (setq dired-dwim-target t)
   (semantic-mode t)
-;;  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-;;  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
 
-;;  (global-semantic-idle-scheduler-mode t)
+  (global-semantic-idle-scheduler-mode t)
   (global-semanticdb-minor-mode t)
-;;  (global-semantic-idle-summary-mode t)
+  (global-semantic-idle-summary-mode t)
   (global-semantic-idle-completions-mode t)
   (global-semantic-highlight-func-mode t)
   (global-semantic-decoration-mode t)
