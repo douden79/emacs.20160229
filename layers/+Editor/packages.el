@@ -352,9 +352,6 @@
     (bind-key "M-c" 'helm-cscope-find-calling-this-function)
     (bind-key "M-]" 'helm-cscope-find-global-definition)
     (bind-key "M-[" 'helm-cscope-pop-mark)
-    (add-hook 'c-mode-hook 'cscope-mode)
-    (add-hook 'c++-mode-hook 'cscope-mode)
-    (add-hook 'asm-mode-hook 'cscope-mode)
     )
   )
  
