@@ -419,7 +419,7 @@
   "nlinum init"
   (global-nlinum-mode t)
   (setq nlinum-format "%4d")
-;;  (global-hl-line-mode 1)
+  (global-hl-line-mode 1)
 ;;  (global-hl-line-highlight)
   )
 
