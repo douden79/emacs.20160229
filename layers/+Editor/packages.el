@@ -338,6 +338,13 @@
     )
   )
 
+(defun editor/autopair ()
+  "autopair"
+  (use-package autopair)
+  :ensure t
+  :init (add-hook 'c-mode-common-hook #'(lambda () (autopair-mode)))
+  )
+
 ;; Helm cscope
 (defun editor/helm-cscope ()
   "Helm cscope settings."
@@ -522,7 +529,9 @@
 ;;	font-lock-maximum-size nil)
 ;;(setq font-lock-support-mode 'fast-lock-mode
   ;;	fast-lock-cache-directories '("~/.emacs-flc"))
+
   )
+
 
 ;; Editor init
 (defun editor/init ()
@@ -585,6 +594,8 @@
   ;; nlinum
   (editor/nlinum)
   (editor/etc-highlight)
+
+  (editor/autopair)
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
