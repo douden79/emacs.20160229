@@ -193,23 +193,22 @@
   ;;(theme/monokai-init)
   ;;(theme/leuven-init)
   ;;(theme/spacemacs-init)
-  ;;(theme/monokai-alt-init)
+  (theme/monokai-alt-init)
   ;;(theme/dracula-init)
   ;;(theme/atom-one-dark-init)
-  (theme/material-init)
+  ;;(theme/material-init)
   ;;(theme/hemisu-init)
   
   ;; Scopes Init
   (scope/beacon-init)
   (scope/winmove-init)
-  (scope/highlight-indent-init)
+  ;;(scope/highlight-indent-init)
   (scope/better-default-init)
   (scope/anything-init)
   (scope/telephone-init)
 
   ;; scope org init
   (scope/org-bullets)
-  ;;(scope/powerline)
   ;; emacs basic
   (scope/emacs-basic)
   )

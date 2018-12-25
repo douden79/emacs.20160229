@@ -350,11 +350,6 @@
   "Helm cscope settings."
   (use-package helm-cscope
     :ensure t
-    ;;    :command (helm-cscope-mode helm-cscope-find-this-symbol)
-    ;;  (bind-key "M-4" 'ecb-goto-window-edit1))
-;;    :bind (("C-c" . helm-cscope-find-called-function)
-;;           ("C-]" . helm-cscope-find-global-definition)
-    ;;           ("C-[" . helm-cscope-pop-mark))
     :init
     (bind-key "M-c" 'helm-cscope-find-calling-this-function)
     (bind-key "M-]" 'helm-cscope-find-global-definition)
@@ -413,10 +408,8 @@
 (defun linux-c-indent ()
   "adjusted defaults for C/C++ mode use with the Linux kernel."
   (interactive)
-;;  (setq tab-width 4)
-  ;;force spaces, to work with dumber editors
   (setq indent-tabs-mode nil) 
-  (setq c-basic-offset 4)
+  (setq c-basic-offset 8)
   (add-hook 'c-mode-hook 'linux-c-indent)
   (add-hook 'c-mode-hook (lambda() (c-set-style "K&R")))
   (add-hook 'c++-mode-hook 'linux-c-indent)
@@ -492,15 +485,15 @@
   (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
 
-  (global-semantic-idle-scheduler-mode t)
-  (global-semanticdb-minor-mode t)
-  (global-semantic-idle-summary-mode t)
-  (global-semantic-idle-completions-mode t)
+;;  (global-semantic-idle-scheduler-mode t)
+;;  (global-semanticdb-minor-mode t)
+;;  (global-semantic-idle-summary-mode t)
+;;  (global-semantic-idle-completions-mode t)
   (global-semantic-highlight-func-mode t)
   (global-semantic-decoration-mode t)
   (global-semantic-stickyfunc-mode t)
   (global-semantic-mru-bookmark-mode t)
-  (setq-default semantic-symref-tool "global")
+  (setq-default semantic-symref-tool "cscope")
 
   (semanticdb-enable-gnu-global-databases 'c++-mode)
   (semanticdb-enable-gnu-global-databases 'c-mode)
@@ -523,12 +516,7 @@
          "Font lock speed improved"
          `(my-font-lock-matcher (1 font-lock-keyword-face nil))))
 
-  (setq jit-lock-stealth-time 10)
-;;(global-font-lock-mode t)
-;;(setq font-lock-maximum-decoration t
-;;	font-lock-maximum-size nil)
-;;(setq font-lock-support-mode 'fast-lock-mode
-  ;;	fast-lock-cache-directories '("~/.emacs-flc"))
+;;  (setq jit-lock-stealth-time 10)
 
   )
 
@@ -540,7 +528,7 @@
   (better/smex)
   
   ;; Autocomplete
-  (editor/autocomplete)
+  ;;(editor/autocomplete)
   ;;(editor/yasnippet)
 
   ;; code folding
@@ -551,11 +539,8 @@
   (editor/multiplecursor)
 
   ;; Hlinum
-;;  (editor/hlinum)
-;;  (editor/linum)
   (editor/sublimity)
   (editor/bm)
-  ;;(editor/dired+)
 
   ;; color/symbol
   (editor/highlightsymbol)
@@ -594,8 +579,6 @@
   ;; nlinum
   (editor/nlinum)
   (editor/etc-highlight)
-
-  (editor/autopair)
 
   ;; emacs console mode keybindings
   (editor/nw-keybindings)
