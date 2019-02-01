@@ -516,10 +516,37 @@
          "Font lock speed improved"
          `(my-font-lock-matcher (1 font-lock-keyword-face nil))))
 
-;;  (setq jit-lock-stealth-time 10)
+  ;;  (setq jit-lock-stealth-time 10)
 
+  ;; if 0 face dim gray.
+  (add-hook 'c-mode-common-hook 'jpk/c-mode-hook)
   )
 
+(defun cpp-highlight-if-0/1 ()
+  "Modify the face of text in between #if 0 ... #endif."
+  (interactive)
+  (setq cpp-known-face '(background-color . "dim gray"))
+  (setq cpp-unknown-face 'default)
+  (setq cpp-face-type 'dark)
+  (setq cpp-known-writable 't)
+  (setq cpp-unknown-writable 't)
+  (setq cpp-edit-list
+        '((#("1" 0 1
+             (fontified nil))
+           nil
+           (background-color . "dim gray")
+           both nil)
+          (#("0" 0 1
+             (fontified nil))
+           (background-color . "dim gray")
+           nil
+           both nil)))
+  (cpp-highlight-buffer t))
+
+(defun jpk/c-mode-hook ()
+  (cpp-highlight-if-0/1)
+  (add-hook 'after-save-hook 'cpp-highlight-if-0/1 'append 'local)
+  )
 
 ;; Editor init
 (defun editor/init ()
