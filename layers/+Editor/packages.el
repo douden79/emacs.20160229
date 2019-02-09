@@ -518,35 +518,44 @@
 
   ;;  (setq jit-lock-stealth-time 10)
 
-  ;; if 0 face dim gray.
-  (add-hook 'c-mode-common-hook 'jpk/c-mode-hook)
+  (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
   )
 
-(defun cpp-highlight-if-0/1 ()
-  "Modify the face of text in between #if 0 ... #endif."
-  (interactive)
-  (setq cpp-known-face '(background-color . "dim gray"))
-  (setq cpp-unknown-face 'default)
-  (setq cpp-face-type 'dark)
-  (setq cpp-known-writable 't)
-  (setq cpp-unknown-writable 't)
-  (setq cpp-edit-list
-        '((#("1" 0 1
-             (fontified nil))
-           nil
-           (background-color . "dim gray")
-           both nil)
-          (#("0" 0 1
-             (fontified nil))
-           (background-color . "dim gray")
-           nil
-           both nil)))
-  (cpp-highlight-buffer t))
+;; This is a function copied from stackoverflow to facify #if 0/#else/#endif keywords.
+;; The comments are added by myself to make it understandable. 
+(defun my-c-mode-font-lock-if0 (limit)
+  (save-restriction
+    (widen)
+    (save-excursion
+      (goto-char (point-min))
+      (let ((depth 0) str start start-depth)
+	;; Search #if/#else/#endif using regular expression.
+        (while (re-search-forward "^\\s-*#\\s-*\\(if\\|else\\|endif\\)" limit 'move)
+          (setq str (match-string 1))
+	  ;; Handle #if.
+          (if (string= str "if")
+              (progn
+                (setq depth (1+ depth))
+		;; Handle neariest 0.
+                (when (and (null start) (looking-at "\\s-+0"))
+                  (setq start (match-end 0)
+                        start-depth depth)))
+	    ;; Handle #else, here we can decorate #if 0->#else block using 'font-lock-comment-face'.
+            (when (and start (= depth start-depth))
+              (c-put-font-lock-face start (match-beginning 0) 'font-lock-comment-face)
+              (setq start nil))
+	    ;; Handle #endif, return to upper block if possible.
+            (when (string= str "endif")
+              (setq depth (1- depth)))))
+	;; Corner case when there are only #if 0 (May be you are coding now:))
+        (when (and start (> depth 0))
+          (c-put-font-lock-face start (point) 'font-lock-comment-face)))))
+  nil)
+(defun my-c-mode-common-hook ()
+  (font-lock-add-keywords
+   nil
+   '((my-c-mode-font-lock-if0 (0 font-lock-comment-face prepend))) 'add-to-end))
 
-(defun jpk/c-mode-hook ()
-  (cpp-highlight-if-0/1)
-  (add-hook 'after-save-hook 'cpp-highlight-if-0/1 'append 'local)
-  )
 
 ;; Editor init
 (defun editor/init ()
